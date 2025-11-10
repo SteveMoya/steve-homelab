@@ -6,6 +6,8 @@
 
 ## Descripción 📑
 
+![banner-image](image.png)
+
 Steve Homelab es mi infraestructura de servidor doméstico personal que ejecuta múltiples servicios auto-hospedados utilizando Docker y Docker Compose. Este proyecto incluye una colección de servicios para gestión de medios, productividad, seguridad, monitoreo y más.
 
 El objetivo de este homelab es proporcionar una solución completa y modular para ejecutar servicios de forma privada y segura en un entorno doméstico, con la flexibilidad de añadir o quitar servicios según sea necesario.

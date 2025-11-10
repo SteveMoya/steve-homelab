@@ -1,0 +1,27 @@
+services:
+  duplicati:
+    container_name: duplicati
+    environment:
+      - DUPLICATI__WEBSERVICE_PASSWORD=casaos
+      - PGID=1000
+      - PUID=1000
+      - SETTINGS_ENCRYPTION_KEY=738c8a17-a29a-4aa9-960e-f562c0a2d127
+      - TZ=Europe/London
+    hostname: duplicati
+    image: linuxserver/duplicati:latest
+    ports:
+      - target: 8200
+        published: "8200"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/duplicati/config
+        target: /config
+      - type: bind
+        source: /DATA/Duplicati/backups
+        target: /backups
+      - type: bind
+        source: /DATA/Duplicati/source
+        target: /source
+    network_mode: bridge

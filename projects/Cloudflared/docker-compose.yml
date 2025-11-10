@@ -1,0 +1,15 @@
+services:
+  cloudflared:
+    container_name: cloudflared
+    command:
+      - tunnel
+      - --no-autoupdate
+      - run
+      - --token
+      - ${CLOUDFLARED_TUNNEL_TOKEN}
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+    image: cloudflare/cloudflared:latest
+    network_mode: bridge
+    restart: unless-stopped
