@@ -1,27 +1,18 @@
 services:
   duplicati:
-    container_name: duplicati
     environment:
-      - DUPLICATI__WEBSERVICE_PASSWORD=casaos
-      - PGID=1000
-      - PUID=1000
-      - SETTINGS_ENCRYPTION_KEY=738c8a17-a29a-4aa9-960e-f562c0a2d127
-      - TZ=Europe/London
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI__WEBSERVICE_PASSWORD} ## Password for the web interface
+      - PGID=${PGID} ## Group ID
+      - PUID=${PUID} ## User ID
+      - SETTINGS_ENCRYPTION_KEY=${SETTINGS_ENCRYPTION_KEY} ## Encryption key use uuidgen to generate a random key
+      - TZ=${TZ} ## Time zone
+      - USAGEREPORTER_Duplicati_LEVEL=${USAGEREPORTER_Duplicati_LEVEL} ## Usage reporter level
     hostname: duplicati
     image: linuxserver/duplicati:latest
     ports:
-      - target: 8200
-        published: "8200"
-        protocol: tcp
+      - 8200:8200
     restart: unless-stopped
     volumes:
-      - type: bind
-        source: /DATA/AppData/duplicati/config
-        target: /config
-      - type: bind
-        source: /DATA/Duplicati/backups
-        target: /backups
-      - type: bind
-        source: /DATA/Duplicati/source
-        target: /source
-    network_mode: bridge
+      - /DATA/AppData/duplicati/config:/config
+      - /DATA/Duplicati/backups:/backups
+      - /DATA/Duplicati/source:/source
