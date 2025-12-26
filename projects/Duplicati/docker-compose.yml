@@ -1,12 +1,6 @@
 services:
   duplicati:
-    environment:
-      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI__WEBSERVICE_PASSWORD} ## Password for the web interface
-      - PGID=${PGID} ## Group ID
-      - PUID=${PUID} ## User ID
-      - SETTINGS_ENCRYPTION_KEY=${SETTINGS_ENCRYPTION_KEY} ## Encryption key use uuidgen to generate a random key
-      - TZ=${TZ} ## Time zone
-      - USAGEREPORTER_Duplicati_LEVEL=${USAGEREPORTER_Duplicati_LEVEL} ## Usage reporter level
+    container_name: duplicati
     hostname: duplicati
     image: linuxserver/duplicati:latest
     ports:
@@ -16,3 +10,10 @@ services:
       - /DATA/AppData/duplicati/config:/config
       - /DATA/Duplicati/backups:/backups
       - /DATA/Duplicati/source:/source
+    environment:
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI__WEBSERVICE_PASSWORD} ## Password for the web interface
+      - PGID=${PGID} ## Group ID
+      - PUID=${PUID} ## User ID
+      - SETTINGS_ENCRYPTION_KEY=${SETTINGS_ENCRYPTION_KEY} ## Encryption key use uuidgen to generate a random key
+      - TZ=${TZ} ## Time zone
+      - USAGEREPORTER_Duplicati_LEVEL=${USAGEREPORTER_Duplicati_LEVEL} ## Usage reporter level

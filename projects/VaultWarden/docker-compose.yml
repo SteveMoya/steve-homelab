@@ -1,0 +1,15 @@
+ vaultwarden:
+    image: vaultwarden/server:1.34.3
+    container_name: vaultwarden
+    environment:
+      - INVITATIONS_ALLOWED=true
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - SIGNUPS_ALLOWED=false # Activate this with "true", create an account and then set it back to "false"
+      - TZ=${TZ}
+      - WEBSOCKET_ENABLED=true
+    volumes:
+      - ./volumes/vaultwarden:/data
+    ports:
+      - "8100:80"
+    restart: unless-stopped

@@ -1,0 +1,12 @@
+services:
+  actual_server:
+    image: actualbudget/actual-server:latest
+    ports:
+      - '5006:5006'
+    environment:
+      TZ: America/Santo_Domingo
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - /APPDATA/actual:/data
+    restart: unless-stopped

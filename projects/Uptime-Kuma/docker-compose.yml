@@ -1,10 +1,8 @@
-version: "3.8"
-
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
-    restart: always
+    restart: unless-stopped
     ports:
       - "3001:3001"  # This maps the container port "3001" to the host port "3001"
     volumes:
@@ -14,7 +12,6 @@ services:
       - UMASK=0022  # Set your file permissions manually
     networks:
       - kuma_network  # add your own custom network config
-
 networks:
   kuma_network:
     driver: bridge

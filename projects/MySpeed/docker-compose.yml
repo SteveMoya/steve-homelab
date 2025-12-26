@@ -1,16 +1,10 @@
 services:
-  app:
-    image: germannewsmaker/myspeed:1.0.9
+  myspeed:
+    image: germannewsmaker/myspeed:latest
+    container_name: myspeed
     ports:
-      - mode: ingress
-        target: 5216
-        published: "5216"
-        protocol: tcp
+      - "5216:5216"
     restart: unless-stopped
     volumes:
-      - type: bind
-        source: /DATA/AppData/big-bear-myspeed/data
-        target: /myspeed/data
-networks:
-  default:
-    name: big-bear-myspeed_default
+      - "/DATA/AppData/myspeed/config:/myspeed/config"
+      - "/DATA/AppData/myspeed/data:/myspeed/data"

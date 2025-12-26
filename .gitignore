@@ -4,3 +4,11 @@
 
 firefly_db/
 firefly_upload/
+
+actual-data/
+
+homarr/
+
+db_data/
+n8n_data/
+redis_data/
